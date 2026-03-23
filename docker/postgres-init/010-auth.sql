@@ -1,3 +1,3 @@
-SET password_encryption = 'md5';
+CREATE ROLE nodejs_course_admin WITH LOGIN PASSWORD 'my_password';
 
-ALTER ROLE nodejs_course_admin WITH PASSWORD 'my_password';
+GRANT ALL PRIVILEGES ON DATABASE nodejs_course_database TO nodejs_course_admin;
