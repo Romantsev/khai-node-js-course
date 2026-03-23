@@ -6,10 +6,10 @@
  "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
   "server": "node --watch src/index.js",
-  "migration:generate": "drizzle-kit generate:pg",
-  "migration:generate:pg": "drizzle-kit generate:pg",
-  "migration:push": "drizzle-kit push:pg",
-  "migration:push:pg": "drizzle-kit push:pg"
+  "migration:generate": "drizzle-kit generate",
+  "migration:generate:pg": "drizzle-kit generate",
+  "migration:push": "drizzle-kit push",
+  "migration:push:pg": "drizzle-kit push"
  },
  "author": "rostyslav romantsev",
  "license": "ISC",

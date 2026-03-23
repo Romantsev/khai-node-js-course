@@ -1,20 +1,26 @@
 const express = require('express');
-const products = require('./products');
+const { eq } = require('drizzle-orm');
+const db = require('./db');
+const { products } = require('./db/schema');
 const { blockSpecialBrand } = require('./middleware');
 
 const router = express.Router();
 
 // handle get request for path /products
-router.get('/products', (request, response) => {
-    return response.json(products);
+router.get('/products', async (request, response) => {
+    const allProducts = await db.select().from(products);
+
+    return response.json(allProducts);
 });
 
 // handle get request for path /products/:brand
-router.get('/products/:brand', blockSpecialBrand, (request, response) => {
+router.get('/products/:brand', blockSpecialBrand, async (request, response) => {
     const { brand } = request.params; // Access the brand parameter from the URL
 
-    // Filter products based on the brand parameter
-    const filteredProducts = products.filter(product => product.brand === brand);
+    const filteredProducts = await db
+        .select()
+        .from(products)
+        .where(eq(products.brand, brand));
 
     response.json(filteredProducts); // Send the filtered products as a JSON response
 });
